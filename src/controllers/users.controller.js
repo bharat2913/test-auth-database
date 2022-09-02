@@ -3,20 +3,19 @@ const router = express.Router();
 const Joi = require('joi');
 const validateRequest = require('_middleware/validate-request');
 const Role = require('_helpers/role');
-const userService = require('./user.service');
+const userService = require('../services/user.service');
 
-// routes
-
-router.get('/', getAll);
-router.get('/:id', getById);
-router.post('/register', createSchema, create);
-router.post('/login', authenticateSchema, authenticate);
-router.put('/:id', updateSchema, update);
-router.delete('/:id', _delete);
-
-module.exports = router;
-
-// route functions
+module.exports = {
+  authenticate,
+  getAll,
+  getById,
+  create,
+  update,
+  _delete,
+  authenticateSchema,
+  createSchema,
+  updateSchema,
+};
 
 function authenticate(req, res, next) {
   userService
